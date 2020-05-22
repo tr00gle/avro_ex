@@ -24,14 +24,14 @@ defmodule AvroEx.Decode.Test do
       {:ok, zero} = AvroEx.encode(schema, 0)
       {:ok, neg_ten} = AvroEx.encode(schema, -10)
       {:ok, ten} = AvroEx.encode(schema, 10)
-      {:ok, big} = AvroEx.encode(schema, 5_000_000)
-      {:ok, small} = AvroEx.encode(schema, -5_000_000)
+      {:ok, big} = AvroEx.encode(schema, 134_217_727)
+      {:ok, small} = AvroEx.encode(schema, -134_217_727)
 
       assert {:ok, 0} = @test_module.decode(schema, zero)
       assert {:ok, -10} = @test_module.decode(schema, neg_ten)
       assert {:ok, 10} = @test_module.decode(schema, ten)
-      assert {:ok, 5_000_000} = @test_module.decode(schema, big)
-      assert {:ok, -5_000_000} = @test_module.decode(schema, small)
+      assert {:ok, 134_217_727} = @test_module.decode(schema, big)
+      assert {:ok, -134_217_727} = @test_module.decode(schema, small)
     end
 
     test "long" do
